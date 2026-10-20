@@ -1,0 +1,3 @@
+<?php
+use Illuminate\Database\Migrations\Migration;use Illuminate\Database\Schema\Blueprint;use Illuminate\Support\Facades\Schema;
+return new class extends Migration {public function up():void{Schema::create('maintenance_records',function(Blueprint $t){$t->id();$t->foreignId('vehicle_id')->constrained()->cascadeOnDelete();$t->string('task');$t->date('due_date')->index();$t->decimal('estimated_cost',14,2)->nullable();$t->string('priority')->default('medium');$t->string('status')->default('scheduled')->index();$t->timestamp('completed_at')->nullable();$t->text('notes')->nullable();$t->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();$t->timestamps();});}public function down():void{Schema::dropIfExists('maintenance_records');}};

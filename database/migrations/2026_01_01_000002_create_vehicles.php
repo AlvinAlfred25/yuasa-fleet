@@ -1,0 +1,3 @@
+<?php
+use Illuminate\Database\Migrations\Migration;use Illuminate\Database\Schema\Blueprint;use Illuminate\Support\Facades\Schema;
+return new class extends Migration {public function up():void{Schema::create('vehicles',function(Blueprint $t){$t->id();$t->string('name');$t->string('registration_number')->unique();$t->string('type');$t->unsignedSmallInteger('seats');$t->decimal('daily_rate',14,2);$t->string('status')->default('available')->index();$t->string('make')->nullable();$t->string('model')->nullable();$t->unsignedSmallInteger('year')->nullable();$t->string('color')->nullable();$t->text('notes')->nullable();$t->timestamps();});}public function down():void{Schema::dropIfExists('vehicles');}};
